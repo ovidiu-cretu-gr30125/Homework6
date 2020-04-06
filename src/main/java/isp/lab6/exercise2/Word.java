@@ -12,6 +12,12 @@ public class Word {
     public String getValue() {
         return value;
     }
+
+    /**
+     * this method overwrite the equals method for compare tow instances from the point of value
+     * @param o the object to compare
+     * @return false if is not the same or true if it is the same value for both objects
+     */
     public boolean equals(Object o){
         if(o == null) return false;
         if(!(o instanceof Word)) return false;

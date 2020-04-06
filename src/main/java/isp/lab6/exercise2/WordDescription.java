@@ -20,6 +20,10 @@ public class WordDescription {
         return description;
     }
 
+    /**
+     * this method add a word in synonyms List
+     * @param word the synonym that had to be added to the list
+     */
     public void addWordSynonym(Word word){
         Synonyms.add(word);
     }

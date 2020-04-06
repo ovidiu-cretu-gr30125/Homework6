@@ -11,19 +11,37 @@ public class DictionarySingleton{
 
         private DictionarySingleton(){ }
 
-        public static DictionarySingleton getINSTANCE(){
+    /**
+     * get instance of the singleton dictionary class
+     * @return the singleton class
+     */
+    public static DictionarySingleton getINSTANCE(){
             if(INSTANCE==null){
                 INSTANCE = new DictionarySingleton();
             }
             return INSTANCE;
         }
-        public boolean allSynonymsInDictionary(List<Word> synonyms){
+
+    /**
+     * this method verify if there are all the synonyms int the dictionary
+     * @param synonyms the list of synonyms
+     * @return true if all the word are in the list or false if there ar not all
+     */
+    public boolean allSynonymsInDictionary(List<Word> synonyms){
             for(Word w :synonyms){
                 if(!INSTANCE.descriptionByWord.containsKey(w));
                 return false;
             }
             return true;
         }
+
+    /**
+     *  this method should override existing word if already exists
+     *   If synonyms are provided, all synonyms should already be in the dictionary
+     * @param word  the word to add
+     * @param wordDescription the description of the word that has to be added
+     * @returntrue if the word was successfully added or false if a particular synonym not found in the dictionary
+     */
         public boolean addWord(Word word,WordDescription wordDescription) {
             if (!INSTANCE.allSynonymsInDictionary(wordDescription.getSynonyms())) return false;
             if (INSTANCE.descriptionByWord.containsKey(word)) {
@@ -41,25 +59,37 @@ public class DictionarySingleton{
             return true;
         }
 
-        public boolean deleteWord(Word word){
+    /**
+     * this method should delete a word
+     * @param word the word that has to be deleted
+     * @returnreturn true if word was found and successfully deleted
+     */
+    public boolean deleteWord(Word word){
             if(INSTANCE.descriptionByWord.containsKey(word)){
-               /* for(Word synonyms : INSTANCE.descriptionByWord.get(word).getSynonyms()){
-                        if(INSTANCE.descriptionByWord.get(synonyms).getSynonyms().equals(word)){
-                            INSTANCE.descriptionByWord.get(synonyms).getSynonyms().remove(word);
-                        }
-                }*/
                 INSTANCE.descriptionByWord.remove(word);
                 return true;
             }
             return false;
         }
-        public WordDescription searchWord(Word word){
+
+    /**
+     * this method search a word in the HashMap
+     * @param word the word that has to be searched
+     * @return null if the function could't find the word or the word if the function find it
+     */
+    public WordDescription searchWord(Word word){
             if(word!=null)
                 return INSTANCE.descriptionByWord.get(word);
             else
                 return null;
         }
-        public List<Word> findSynonyms(Word word){
+
+    /**
+     * this method should find all the synonyms for the given word
+     * @param word the word for which the function has to find all the synonyms
+     * @return null if there are not even a synonym or the synonyms of the word if there are
+     */
+    public List<Word> findSynonyms(Word word){
             if(INSTANCE.descriptionByWord.containsKey(word)){
                 return INSTANCE.descriptionByWord.get(word).getSynonyms();
             }

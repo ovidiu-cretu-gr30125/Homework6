@@ -1,7 +1,8 @@
 package isp.lab6.exercise2;
 
-public class Exercise2 {
+import java.util.Scanner;
 
+public class Exercise2 {
     public static void main(String[] args) {
             DictionarySingleton d1 = DictionarySingleton.getINSTANCE();
             Word w1 = new Word("PC");

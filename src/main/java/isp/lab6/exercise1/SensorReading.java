@@ -3,6 +3,7 @@ package isp.lab6.exercise1;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.Objects;
 
 public class SensorReading implements Comparable<SensorReading>  {
     private LocalDateTime dateAndTime;
@@ -41,9 +42,12 @@ public class SensorReading implements Comparable<SensorReading>  {
         SensorReading other = (SensorReading) o;
         return this.dateAndTime==other.dateAndTime;
     }
-    public void setValue(double newValue){
-        this.value=newValue;
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateAndTime, value);
     }
+
     public double getValue() {
         return value;
     }

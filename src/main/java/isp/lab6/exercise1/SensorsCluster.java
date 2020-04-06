@@ -15,13 +15,15 @@ public class SensorsCluster {
      * @param type the type of the sensor (one of TEMPERATURE,HUMIDITY,PRESSURE)
      * @return null if the sensor with the given id exits or the instance of the new sensor
      */
-    public Sensor addSensor(String sensorId, SENSOR_TYPE type){
-        for(Sensor s: sensorsList){
-            if(sensorId!=s.getId())
-                sensorsList.add(s =new Sensor(sensorId,type));
-           return s;
+    public List<Sensor> addSensor(String sensorId, SENSOR_TYPE type){
+        if (sensorsList.contains(new Sensor(sensorId,type))) {
+            System.out.println("Already exist.");
+            return null;
         }
-        return null;
+        else
+            sensorsList.add(new Sensor(sensorId,type));
+
+        return sensorsList;
     }
 
     /**
@@ -33,7 +35,7 @@ public class SensorsCluster {
      */
     public boolean writeSensorReading(String sensorId, double value , LocalDateTime dateTime){
         for(Sensor s : sensorsList){
-            if(sensorId==s.getId()){
+            if(sensorId.equals(s.getId())){
                 s.addSensorReading(new SensorReading(dateTime,value));
                 return true;
             }
@@ -51,10 +53,17 @@ public class SensorsCluster {
             if(sensorId.equals(s.getId()))
                 return s;
             System.out.println("Readings sorted by date and time");
-            System.out.println(s.getSensorReadingsSortedByDateAndTime());
+            System.out.println(s.getSensorReadingsSortedByDateAndTime().toString());
             System.out.println("Readings sorted by value");
-            System.out.println(s.getSensorReadingsListSortedByValue());
+            System.out.println(s.getSensorReadingsSortedByValue().toString());
         }
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "SensorsCluster{" +
+                "sensorsList=" + sensorsList +
+                '}';
     }
 }

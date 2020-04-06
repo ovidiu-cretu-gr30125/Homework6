@@ -15,7 +15,7 @@ public class Sensor implements Comparator<SensorReading> {
     List<SensorReading> sensorReadingsList = new ArrayList<SensorReading>();
 
     public List<SensorReading> getSensorReadingsSortedByDateAndTime(){
-        Collections.sort(sensorReadingsList);
+        ///Collections.sort(sensorReadingsList);
         return sensorReadingsList;
     }
     @Override
@@ -28,7 +28,7 @@ public class Sensor implements Comparator<SensorReading> {
     }
 
     public List<SensorReading> getSensorReadingsListSortedByValue(){
-        Collections.sort(sensorReadingsList);
+        ///Collections.sort(sensorReadingsList);
         return sensorReadingsList;
     }
 
